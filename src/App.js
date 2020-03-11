@@ -1,11 +1,10 @@
 import React from 'react';
-import {SafeAreaView, View, StatusBar, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import CreaditSimulator from './components/CreditSimulator';
 
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
       <View style={styles.container}>
         <CreaditSimulator />
       </View>
