@@ -29,5 +29,7 @@ export default StyleSheet.create({
     borderColor: 'white',
     color: 'white',
     fontSize: 14,
+    lineHeight: 12,
+    textAlign:'center'
   },
 });

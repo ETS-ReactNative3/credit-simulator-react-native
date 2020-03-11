@@ -1,15 +1,21 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
+import CustomText from '../CustomText'
 
 const styles = StyleSheet.create({
-  container: {
-    height: 38,
+  button: {
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 4,
     flex: 1,
   },
-  text: {
+  buttonLarge: {
+    fontSize: 16, 
+    fontWeight: 'bold'
+    
+  },
+  buttonText: {
     textAlign: 'center',
     fontSize: 11,
   },
@@ -20,11 +26,11 @@ export default function CustomButton({buttonText, color, large}) {
     <TouchableOpacity
       onPress={() => {}}
       style={[
-        styles.container,
+        styles.button,
         {backgroundColor: color},
-        large && {flex: 2, fontSize: 14},
+        large && { flex: 2, }
       ]}>
-      <Text style={styles.text}>{buttonText}</Text>
+        <CustomText style={[styles.buttonText, large && styles.buttonLarge]}>{buttonText}</CustomText>
     </TouchableOpacity>
   );
 }

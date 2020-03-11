@@ -4,9 +4,9 @@ export default StyleSheet.create({
   container: {
     backgroundColor: '#0A3B67',
     alignItems: 'center',
-    height: 380,
+    height: 400,
     width: 330,
-    paddingHorizontal: 38,
+    paddingHorizontal: 24,
   },
   simulatorTitle: {
     color: 'white',

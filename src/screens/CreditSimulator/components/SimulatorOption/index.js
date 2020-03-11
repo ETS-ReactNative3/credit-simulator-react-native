@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import Slider from '@react-native-community/slider';
 import styles from './styles';
+import CustomText from '../../../../components/CustomText'
 
 export default function SimulatorOption({
   label,
@@ -9,6 +10,7 @@ export default function SimulatorOption({
   maximumValue,
   initialAmount,
   onChangeOption,
+  currency
 }) {
   const [amount, setAmount] = useState(initialAmount);
   const onChangeHandler = value => {
@@ -22,8 +24,8 @@ export default function SimulatorOption({
         <View style={styles.amountContainer}>
           <TextInput
             onChangeText={onChangeHandler}
-            value={`${amount}`}
-            maxLength={`${maximumValue}`.length}
+            value={currency ? `$ ${amount}` : `${amount}`}
+            maxLength={`${maximumValue}`.length +2}
             keyboardType="number-pad"
             style={styles.textInput}
           />
@@ -42,8 +44,8 @@ export default function SimulatorOption({
           thumbTintColor="#FFFFFF"
         />
         <View style={styles.rowContainer}>
-          <Text>{minimumValue}</Text>
-          <Text>{maximumValue}</Text>
+          <CustomText>{`$ ${minimumValue}`}</CustomText>
+          <CustomText>{`$ ${maximumValue}`}</CustomText>
         </View>
       </View>
     </View>
