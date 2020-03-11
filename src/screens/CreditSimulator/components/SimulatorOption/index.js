@@ -29,20 +29,22 @@ export default function SimulatorOption({
           />
         </View>
       </View>
-      <Slider
-        style={styles.slider}
-        value={amount}
-        step={1}
-        onValueChange={onChangeHandler}
-        minimumValue={minimumValue}
-        maximumValue={maximumValue}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#FFFFFF"
-        thumbTintColor="#FFFFFF"
-      />
-      <View style={styles.rowContainer}>
-        <Text>{minimumValue}</Text>
-        <Text>{maximumValue}</Text>
+      <View style={styles.sliderContainer}>
+        <Slider
+          style={styles.slider}
+          value={amount}
+          step={1}
+          onValueChange={onChangeHandler}
+          minimumValue={minimumValue}
+          maximumValue={maximumValue}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#FFFFFF"
+          thumbTintColor="#FFFFFF"
+        />
+        <View style={styles.rowContainer}>
+          <Text>{minimumValue}</Text>
+          <Text>{maximumValue}</Text>
+        </View>
       </View>
     </View>
   );

@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 4,
-    width: 110,
+    flex: 1,
   },
   text: {
     textAlign: 'center',
@@ -22,7 +22,7 @@ export default function CustomButton({buttonText, color, large}) {
       style={[
         styles.container,
         {backgroundColor: color},
-        large && {width: 160, fontSize: 14},
+        large && {flex: 2, fontSize: 14},
       ]}>
       <Text style={styles.text}>{buttonText}</Text>
     </TouchableOpacity>

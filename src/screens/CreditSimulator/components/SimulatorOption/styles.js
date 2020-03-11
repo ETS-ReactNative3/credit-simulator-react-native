@@ -14,9 +14,12 @@ export default StyleSheet.create({
   label: {
     color: 'white',
   },
+  sliderContainer: {
+    width: '100%',
+    marginTop: 8,
+  },
   slider: {
-    width: 200,
-    height: 40,
+    width: 250,
     color: 'white',
   },
   textInput: {

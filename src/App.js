@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import CreaditSimulator from './components/CreditSimulator';
+import {CreditSimulator} from './screens';
 
 const App = () => {
   return (
     <>
       <View style={styles.container}>
-        <CreaditSimulator />
+        <CreditSimulator />
       </View>
     </>
   );
@@ -15,7 +15,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A3B67',
+    backgroundColor: '#114E82',
     justifyContent: 'center',
     alignItems: 'center',
   },

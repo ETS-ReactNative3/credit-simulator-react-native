@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import SimulatorOption from '../SimulatorOption';
-import LoanInfo from '../LoanInfo';
-import CustomButton from '../CustomButton';
+import SimulatorOption from './components/SimulatorOption';
+import LoanInfo from './components/LoanInfo';
+import CustomButton from '../../components/CustomButton';
 import styles from './styles';
 
 export default function CreditSimulator() {
@@ -15,7 +15,7 @@ export default function CreditSimulator() {
   return (
     <View style={styles.container}>
       <Text style={styles.simulatorTitle}>Simulá tu crédito</Text>
-      <View style={styles.simulatorOptions}>
+      <View style={styles.simulatorOptionsContainer}>
         <SimulatorOption
           label="MONTO TOTAL"
           minimumValue={5000}
@@ -31,14 +31,16 @@ export default function CreditSimulator() {
           onChangeOption={setPayoutDelay}
         />
       </View>
-      <LoanInfo fixedFee={fixedFee} />
-      <View style={styles.callToActions}>
-        <CustomButton buttonText={'OBTENÉ CRÉDITO'} color={'#37AA8D'} large />
-        <View style={{width: 8}} />
-        <CustomButton
-          buttonText={'VER DETALLE DE \nCUOTAS'}
-          color={'#12538B'}
-        />
+      <View style={styles.loanInfoContainer}>
+        <LoanInfo fixedFee={fixedFee} />
+        <View style={styles.callToActions}>
+          <CustomButton buttonText={'OBTENÉ CRÉDITO'} color={'#37AA8D'} large />
+          <View style={{width: 8}} />
+          <CustomButton
+            buttonText={'VER DETALLE DE \nCUOTAS'}
+            color={'#12538B'}
+          />
+        </View>
       </View>
     </View>
   );
