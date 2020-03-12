@@ -1,7 +1,7 @@
 # credit-simulator
 
 ## Preview
-
+![credit-simulator Demo](demo/demo.gif)
 
 ## Main technologies used
 
