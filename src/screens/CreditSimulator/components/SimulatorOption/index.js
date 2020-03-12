@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import Slider from '@react-native-community/slider';
 import styles from './styles';
-import CustomText from '../../../../components/CustomText'
+import CustomText from '../../../../components/customText';
 
 export default function SimulatorOption({
   label,
@@ -10,12 +10,15 @@ export default function SimulatorOption({
   maximumValue,
   initialAmount,
   onChangeOption,
-  currency
+  currency,
 }) {
-  const [amount, setAmount] = useState(initialAmount);
   const onChangeHandler = value => {
-    setAmount(Number(value));
-    onChangeOption(amount);
+    const sanitizedValue =
+      typeof value === 'string' ? Number(value.replace(/\D/g, '')) : value;
+    if (sanitizedValue > maximumValue) {
+      return;
+    }
+    onChangeOption(sanitizedValue);
   };
   return (
     <View style={styles.container}>
@@ -24,8 +27,7 @@ export default function SimulatorOption({
         <View style={styles.amountContainer}>
           <TextInput
             onChangeText={onChangeHandler}
-            value={currency ? `$ ${amount}` : `${amount}`}
-            maxLength={`${maximumValue}`.length +2}
+            value={currency ? `$ ${initialAmount}` : `${initialAmount}`}
             keyboardType="number-pad"
             style={styles.textInput}
           />
@@ -34,7 +36,7 @@ export default function SimulatorOption({
       <View style={styles.sliderContainer}>
         <Slider
           style={styles.slider}
-          value={amount}
+          value={initialAmount}
           step={1}
           onValueChange={onChangeHandler}
           minimumValue={minimumValue}

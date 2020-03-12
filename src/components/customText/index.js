@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   base: {
     fontSize: 14,
-    fontFamily:'Montserrat',
-    color: 'white'
-  }
+    fontFamily: 'Montserrat',
+    color: 'white',
+  },
 });
 
 export default function CustomText({textProps, style, children}) {

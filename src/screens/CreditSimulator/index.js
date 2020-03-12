@@ -1,53 +1,58 @@
-import React, {useState, useEffect} from 'react';
+import React, {useReducer} from 'react';
 import {View} from 'react-native';
 import SimulatorOption from './components/SimulatorOption';
 import LoanInfo from './components/LoanInfo';
 import CustomButton from '../../components/CustomButton';
 import styles from './styles';
-import CustomText from '../../components/CustomText'
+import CustomText from '../../components/customText';
+
+const calMonthlyPay = (loanAmount, loanTerm) => {
+  if (!isFinite(loanAmount / loanTerm)) {
+    return;
+  }
+  return (loanAmount / loanTerm).toFixed(2);
+};
+
+const init = ({loanAmount, loanTerm}) => ({
+  loanAmount,
+  loanTerm,
+  monthlyPay: calMonthlyPay(loanAmount, loanTerm),
+});
 
 const initialState = {
   loanAmount: 16500,
-  payoutDelay: 16,
-  fixedFee: 0
-}
+  loanTerm: 16,
+};
 
 const reducer = (state, action) => {
-  switch (key) {
-    case 'UpdateLoanAmount':
+  const {newValue} = action.payload;
+  const sanitizedValue =
+    typeof value === 'string' ? Number(newValue.replace(/\D/g, '')) : newValue;
+  switch (action.type) {
+    case 'UPDATE_LOAN_AMOUNT': {
       return {
         ...state,
-        loanAmount: action.payload.amount
-      }
-    case 'UpdatePayoutDelay':
-    return {
-      ...state,
-      loanAmount: action.payload.amount
+        loanAmount: sanitizedValue,
+        monthlyPay: calMonthlyPay(sanitizedValue, state.loanTerm),
+      };
     }
-    case 'UpdateLoanAmount':
-    return {
-      ...state,
-      loanAmount: action.payload.amount
+    case 'UPDATE_LOAN_TERM': {
+      return {
+        ...state,
+        loanTerm: sanitizedValue,
+        monthlyPay: calMonthlyPay(state.loanAmount, sanitizedValue),
+      };
     }
     default:
       throw new Error();
   }
-}
+};
 
 export default function CreditSimulator() {
-  const [totalAmount, setTotalAmount] = useState(16500);
-  const [payoutDelay, setPayoutDelay] = useState(16);
-  const [fixedFee, setFixedFee] = useState();
+  const [state, dispatch] = useReducer(reducer, initialState, init);
 
-  useEffect(() => {
-    const fixedFeeCal = (
-      (isFinite(totalAmount / payoutDelay) && totalAmount / payoutDelay) ||
-      0
-    ).toFixed(2);
-    setFixedFee(fixedFeeCal)
-  }, [totalAmount, payoutDelay])
+  const {loanAmount, loanTerm, monthlyPay} = state;
 
-  console.log({totalAmount, payoutDelay, fixedFee})
   return (
     <View style={styles.container}>
       <CustomText style={styles.simulatorTitle}>Simulá tu crédito</CustomText>
@@ -56,24 +61,26 @@ export default function CreditSimulator() {
           label="MONTO TOTAL"
           minimumValue={5000}
           maximumValue={50000}
-          initialAmount={totalAmount}
-          onChangeOption={setTotalAmount}
+          initialAmount={loanAmount}
+          onChangeOption={newValue =>
+            dispatch({type: 'UPDATE_LOAN_AMOUNT', payload: {newValue}})
+          }
           currency
         />
         <SimulatorOption
           label="PLAZO"
           minimumValue={3}
           maximumValue={24}
-          initialAmount={payoutDelay}
-          onChangeOption={setPayoutDelay}
+          initialAmount={loanTerm}
+          onChangeOption={newValue =>
+            dispatch({type: 'UPDATE_LOAN_TERM', payload: {newValue}})
+          }
         />
       </View>
       <View style={styles.loanInfoContainer}>
-        <LoanInfo fixedFee={fixedFee} />
+        <LoanInfo monthlyPay={monthlyPay} />
         <View style={styles.callToActions}>
-          <CustomButton 
-            buttonText={'OBTENÉ CRÉDITO'} 
-            color={'#37AA8D'} large />
+          <CustomButton buttonText={'OBTENÉ CRÉDITO'} color={'#37AA8D'} large />
           <View style={{width: 8}} />
           <CustomButton
             buttonText={'VER DETALLE DE \nCUOTAS'}

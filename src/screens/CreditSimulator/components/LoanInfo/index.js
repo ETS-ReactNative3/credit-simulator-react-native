@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import CustomText from '../../../../components/CustomText'
+import CustomText from '../../../../components/customText';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,19 +13,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   message: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   fixedFee: {
     fontSize: 24,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
-export default function LoanInfo({fixedFee}) {
+export default function LoanInfo({monthlyPay}) {
   return (
     <View style={styles.container}>
       <CustomText style={styles.message}>CUOTA FIJA POR MES</CustomText>
-      <CustomText style={styles.fixedFee}>{`$ ${fixedFee}`}</CustomText>
+      <CustomText style={styles.monthlyPay}>{`$ ${monthlyPay}`}</CustomText>
     </View>
   );
 }
