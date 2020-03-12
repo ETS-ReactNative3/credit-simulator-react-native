@@ -1,21 +1,30 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StatusBar, ScrollView} from 'react-native';
 import {CreditSimulator} from './screens';
+import {secondary} from './constans/colors';
 
 const App = () => {
   return (
     <>
-      <View style={styles.container}>
-        <CreditSimulator />
-      </View>
+      <StatusBar barStyle="dark-content" />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={styles.contentContainer}>
+        <View style={styles.container}>
+          <CreditSimulator />
+        </View>
+      </ScrollView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  contentContainer: {
+    flexGrow: 1,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#114E82',
+    flexGrow: 1,
+    backgroundColor: secondary,
     justifyContent: 'center',
     alignItems: 'center',
   },

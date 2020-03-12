@@ -11,25 +11,24 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  label: {
-    color: 'white',
-  },
   sliderContainer: {
     width: '100%',
     marginTop: 8,
   },
   slider: {
-    width: 250,
+    width: 280,
     color: 'white',
   },
   textInput: {
     width: 80,
     height: 34,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: '#b3c5d1',
     color: 'white',
-    fontSize: 14,
-    lineHeight: 12,
-    textAlign:'center'
+    fontSize: 18,
+    lineHeight: 2,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    textAlignVertical: 'bottom',
   },
 });

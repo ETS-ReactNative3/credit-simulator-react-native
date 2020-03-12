@@ -1,10 +1,12 @@
 import React, {useReducer} from 'react';
 import {View} from 'react-native';
-import SimulatorOption from './components/SimulatorOption';
+import SimulatorInput from './components/SimulatorInput';
 import LoanInfo from './components/LoanInfo';
 import CustomButton from '../../components/CustomButton';
 import styles from './styles';
 import CustomText from '../../components/customText';
+import Divider from '../..//components/Divider';
+import {success, accent} from '../../constans/colors';
 
 const calMonthlyPay = (loanAmount, loanTerm) => {
   if (!isFinite(loanAmount / loanTerm)) {
@@ -20,27 +22,27 @@ const init = ({loanAmount, loanTerm}) => ({
 });
 
 const initialState = {
-  loanAmount: 16500,
+  loanAmount: 19500,
   loanTerm: 16,
 };
 
 const reducer = (state, action) => {
   const {newValue} = action.payload;
-  const sanitizedValue =
+  const sanitizedNewValue =
     typeof value === 'string' ? Number(newValue.replace(/\D/g, '')) : newValue;
   switch (action.type) {
     case 'UPDATE_LOAN_AMOUNT': {
       return {
         ...state,
-        loanAmount: sanitizedValue,
-        monthlyPay: calMonthlyPay(sanitizedValue, state.loanTerm),
+        loanAmount: sanitizedNewValue,
+        monthlyPay: calMonthlyPay(sanitizedNewValue, state.loanTerm),
       };
     }
     case 'UPDATE_LOAN_TERM': {
       return {
         ...state,
-        loanTerm: sanitizedValue,
-        monthlyPay: calMonthlyPay(state.loanAmount, sanitizedValue),
+        loanTerm: sanitizedNewValue,
+        monthlyPay: calMonthlyPay(state.loanAmount, sanitizedNewValue),
       };
     }
     default:
@@ -55,24 +57,24 @@ export default function CreditSimulator() {
 
   return (
     <View style={styles.container}>
-      <CustomText style={styles.simulatorTitle}>Simulá tu crédito</CustomText>
-      <View style={styles.simulatorOptionsContainer}>
-        <SimulatorOption
+      <CustomText style={styles.title}>Simulá tu crédito</CustomText>
+      <View style={styles.inputsContainer}>
+        <SimulatorInput
           label="MONTO TOTAL"
           minimumValue={5000}
           maximumValue={50000}
-          initialAmount={loanAmount}
-          onChangeOption={newValue =>
+          inputValue={loanAmount}
+          onChange={newValue =>
             dispatch({type: 'UPDATE_LOAN_AMOUNT', payload: {newValue}})
           }
           currency
         />
-        <SimulatorOption
+        <SimulatorInput
           label="PLAZO"
           minimumValue={3}
           maximumValue={24}
-          initialAmount={loanTerm}
-          onChangeOption={newValue =>
+          inputValue={loanTerm}
+          onChange={newValue =>
             dispatch({type: 'UPDATE_LOAN_TERM', payload: {newValue}})
           }
         />
@@ -80,12 +82,9 @@ export default function CreditSimulator() {
       <View style={styles.loanInfoContainer}>
         <LoanInfo monthlyPay={monthlyPay} />
         <View style={styles.callToActions}>
-          <CustomButton buttonText={'OBTENÉ CRÉDITO'} color={'#37AA8D'} large />
-          <View style={{width: 8}} />
-          <CustomButton
-            buttonText={'VER DETALLE DE \nCUOTAS'}
-            color={'#12538B'}
-          />
+          <CustomButton buttonText={'OBTENÉ CRÉDITO'} color={success} large />
+          <Divider width={8} />
+          <CustomButton buttonText={'VER DETALLE DE \nCUOTAS'} color={accent} />
         </View>
       </View>
     </View>

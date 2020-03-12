@@ -1,22 +1,21 @@
 import {StyleSheet} from 'react-native';
+import {prymary, info} from '../../constans/colors';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#0A3B67',
+    backgroundColor: prymary,
     alignItems: 'center',
     height: 400,
     width: 330,
     paddingHorizontal: 24,
   },
-  simulatorTitle: {
-    color: 'white',
+  title: {
     fontSize: 24,
     textAlign: 'center',
     fontWeight: 'bold',
     marginTop: 24,
-    width: '100%',
   },
-  simulatorOptionsContainer: {
+  inputsContainer: {
     height: 200,
     justifyContent: 'space-between',
     marginTop: 24,
@@ -25,7 +24,7 @@ export default StyleSheet.create({
   loanInfoContainer: {
     marginTop: 8,
     width: '100%',
-    backgroundColor: '#08355D',
+    backgroundColor: info,
   },
   callToActions: {
     flexDirection: 'row',
