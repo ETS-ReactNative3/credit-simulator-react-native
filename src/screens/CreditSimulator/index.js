@@ -4,8 +4,8 @@ import SimulatorInput from './components/SimulatorInput';
 import LoanInfo from './components/LoanInfo';
 import CustomButton from '../../components/CustomButton';
 import styles from './styles';
-import CustomText from '../../components/customText';
-import Divider from '../..//components/Divider';
+import CustomText from '../../components/CustomText';
+import Divider from '../../components/Divider';
 import {success, accent} from '../../constans/colors';
 
 const calMonthlyPay = (loanAmount, loanTerm) => {

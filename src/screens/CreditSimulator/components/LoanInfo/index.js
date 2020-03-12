@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import CustomText from '../../../../components/customText';
+import CustomText from '../../../../components/CustomText';
 import {currencyFormat} from '../../../../utils';
 import styles from './styles';
 

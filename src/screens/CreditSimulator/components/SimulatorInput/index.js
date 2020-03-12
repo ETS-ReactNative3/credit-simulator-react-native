@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TextInput} from 'react-native';
 import Slider from '@react-native-community/slider';
 import styles from './styles';
-import CustomText from '../../../../components/customText';
+import CustomText from '../../../../components/CustomText';
 import {currencyFormat} from '../../../../utils';
 
 export default function SimulatorInput({
